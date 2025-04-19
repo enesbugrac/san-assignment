@@ -1,10 +1,10 @@
 import React, { Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
-import { routesConfig } from "./routes-config.tsx";
-import type { RouteConfig } from "./types/routes.ts";
-import ProtectedRoute from "./components/utils/ProtectedRoute";
-import TranslationPrefetcher from "./components/utils/TranslationPrefetcher";
-import LoadingSpinner from "./components/ui/LoadingSpinner";
+import { routesConfig } from "@/routes-config";
+import type { RouteConfig } from "@/types/routes";
+import ProtectedRoute from "@/components/utils/ProtectedRoute";
+import TranslationPrefetcher from "@/components/utils/TranslationPrefetcher";
+import LoadingSpinner from "@/components/ui/LoadingSpinner";
 
 const renderRoutes = (routes: RouteConfig[]) => {
   return routes.map((route) => {

@@ -1,9 +1,9 @@
-import { Permission } from "./types/permissions";
-import { RouteConfig } from "./types/routes";
+import { Permission } from "@/types/permissions";
+import { RouteConfig } from "@/types/routes";
 
-import LoginPage from "./pages/LoginPage";
-import ViewPostTab from "./pages/ViewPostTab";
-import ErrorPage from "./pages/ErrorPage";
+import LoginPage from "@/pages/LoginPage";
+import ViewPostTab from "@/pages/ViewPostTab";
+import ErrorPage from "@/pages/ErrorPage";
 
 export const routesConfig: RouteConfig[] = [
   {
@@ -18,7 +18,7 @@ export const routesConfig: RouteConfig[] = [
     name: "app",
     path: "/",
     renderer: {
-      lazy: () => import("./components/layout/AppLayout"),
+      lazy: () => import("@/components/layout/AppLayout"),
     },
     children: [
       {
@@ -26,7 +26,7 @@ export const routesConfig: RouteConfig[] = [
         path: "",
         index: true,
         renderer: {
-          lazy: () => import("./pages/HomePage"),
+          lazy: () => import("@/pages/HomePage"),
         },
         permissions: [Permission.VIEW_POSTS, Permission.VIEW_COMMENTS],
         translations: ["dashboard", "common"],
@@ -35,7 +35,7 @@ export const routesConfig: RouteConfig[] = [
         name: "posts",
         path: "posts",
         renderer: {
-          lazy: () => import("./pages/PostsPage"),
+          lazy: () => import("@/pages/PostsPage"),
         },
         permissions: [Permission.VIEW_POSTS],
         translations: ["posts", "common"],
@@ -44,7 +44,7 @@ export const routesConfig: RouteConfig[] = [
         name: "createPost",
         path: "posts/create",
         renderer: {
-          lazy: () => import("./pages/CreatePostPage"),
+          lazy: () => import("@/pages/CreatePostPage"),
         },
         permissions: [Permission.CREATE_POST],
         translations: ["postCreate", "common"],
@@ -53,7 +53,7 @@ export const routesConfig: RouteConfig[] = [
         name: "post",
         path: "posts/:id",
         renderer: {
-          lazy: () => import("./pages/PostPage"),
+          lazy: () => import("@/pages/PostPage"),
         },
         permissions: [Permission.VIEW_POSTS],
         translations: ["post", "common"],
@@ -70,7 +70,7 @@ export const routesConfig: RouteConfig[] = [
             name: "post.edit",
             path: "edit",
             renderer: {
-              lazy: () => import("./pages/EditPostTab"),
+              lazy: () => import("@/pages/EditPostTab"),
             },
             permissions: [Permission.EDIT_POST],
             translations: ["postEdit"],
@@ -79,7 +79,7 @@ export const routesConfig: RouteConfig[] = [
             name: "post.comments",
             path: "comments",
             renderer: {
-              lazy: () => import("./pages/PostCommentsTab"),
+              lazy: () => import("@/pages/PostCommentsTab"),
             },
             permissions: [Permission.VIEW_COMMENTS],
             translations: ["postComments"],

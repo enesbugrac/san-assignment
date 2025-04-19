@@ -1,5 +1,5 @@
 import React from "react";
-import { Permission } from "./permissions";
+import { Permission } from "@/types/permissions";
 
 export interface RouteConfig {
   name: string;

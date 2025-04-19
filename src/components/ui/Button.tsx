@@ -1,5 +1,5 @@
 import React, { ButtonHTMLAttributes } from "react";
-import LoadingSpinner from "./LoadingSpinner";
+import LoadingSpinner from "@/components/ui/LoadingSpinner";
 
 type ButtonVariant = "primary" | "danger" | "success" | "outline";
 type ButtonSize = "xs" | "sm" | "md" | "lg";

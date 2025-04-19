@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { useGetPost, useUpdatePost, UpdatePostBody } from "../api/posts";
-import nav from "../navigation";
-import { LoadingSpinner } from "../components/ui";
-import { ErrorMessage } from "../components/ui";
-import { FormLabel } from "../components/forms";
-import { FormInput } from "../components/forms";
-import { FormTextarea } from "../components/forms";
-import Button from "../components/ui/Button";
-import { useToast } from "../hooks/useToast";
+import { useGetPost, useUpdatePost, UpdatePostBody } from "@/api/posts";
+import nav from "@/navigation";
+import { LoadingSpinner } from "@/components/ui";
+import { ErrorMessage } from "@/components/ui";
+import { FormLabel } from "@/components/forms";
+import { FormInput } from "@/components/forms";
+import { FormTextarea } from "@/components/forms";
+import Button from "@/components/ui/Button";
+import { useToast } from "@/hooks/useToast";
 const EditPostTab: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const postId = id ? parseInt(id, 10) : undefined;

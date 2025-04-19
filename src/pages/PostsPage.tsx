@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useGetPosts, useDeletePost, Post } from "../api/posts";
-import nav from "../navigation";
-import { LoadingSpinner } from "../components/ui";
-import { ErrorMessage } from "../components/ui";
-import { PageTitle } from "../components/ui";
-import { ConfirmationModal } from "../components/ui";
-import Button from "../components/ui/Button";
-import { useToast } from "../hooks/useToast";
+import { useGetPosts, useDeletePost, Post } from "@/api/posts";
+import nav from "@/navigation";
+import { LoadingSpinner } from "@/components/ui";
+import { ErrorMessage } from "@/components/ui";
+import { PageTitle } from "@/components/ui";
+import { ConfirmationModal } from "@/components/ui";
+import Button from "@/components/ui/Button";
+import { useToast } from "@/hooks/useToast";
 const PostsPage: React.FC = () => {
   const { data: posts, isLoading, error } = useGetPosts();
   const { mutate: deletePostMutate, isPending: isDeleting } = useDeletePost();

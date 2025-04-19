@@ -1,10 +1,10 @@
 import React from "react";
 import { Outlet, useParams, NavLink } from "react-router-dom";
-import { useGetPost } from "../api/posts";
-import nav from "../navigation";
-import { LoadingSpinner } from "../components/ui";
-import { ErrorMessage } from "../components/ui";
-import { PageTitle } from "../components/ui";
+import { useGetPost } from "@/api/posts";
+import nav from "@/navigation";
+import { LoadingSpinner } from "@/components/ui";
+import { ErrorMessage } from "@/components/ui";
+import { PageTitle } from "@/components/ui";
 
 const PostPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();

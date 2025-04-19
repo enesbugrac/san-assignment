@@ -1,9 +1,9 @@
 import React from "react";
-import { useAuth } from "../hooks/useAuth";
+import { useAuth } from "@/hooks/useAuth";
 import { Navigate } from "react-router-dom";
-import { LoadingSpinner } from "../components/ui";
-import { PageTitle } from "../components/ui";
-import Button from "../components/ui/Button";
+import { LoadingSpinner } from "@/components/ui";
+import { PageTitle } from "@/components/ui";
+import Button from "@/components/ui/Button";
 
 const LoginPage: React.FC = () => {
   const { login, isLoggedIn, isLoading } = useAuth();

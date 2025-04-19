@@ -1,6 +1,6 @@
 import React from "react";
-import LoadingSpinner from "./LoadingSpinner";
-import ErrorMessage from "./ErrorMessage";
+import LoadingSpinner from "@/components/ui/LoadingSpinner";
+import ErrorMessage from "@/components/ui/ErrorMessage";
 
 interface CardProps {
   title: string;

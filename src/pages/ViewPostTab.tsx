@@ -1,8 +1,8 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { useGetPost } from "../api/posts";
-import { LoadingSpinner } from "../components/ui";
-import { ErrorMessage } from "../components/ui";
+import { useGetPost } from "@/api/posts";
+import { LoadingSpinner } from "@/components/ui";
+import { ErrorMessage } from "@/components/ui";
 
 const ViewPostTab: React.FC = () => {
   const { id } = useParams<{ id: string }>();

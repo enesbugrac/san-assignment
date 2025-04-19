@@ -1,6 +1,6 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
-import { Permission } from "../types/permissions";
+import { Permission } from "@/types/permissions";
 
 export interface User {
   name: string;

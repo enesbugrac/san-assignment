@@ -1,6 +1,6 @@
 import { generatePath } from "react-router-dom";
-import { routesConfig } from "./routes-config.tsx";
-import type { RouteConfig } from "./types/routes.ts";
+import { routesConfig } from "@/routes-config";
+import type { RouteConfig } from "@/types/routes";
 
 type PathParams = Record<string, string | number>;
 

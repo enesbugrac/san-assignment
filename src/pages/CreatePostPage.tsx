@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useCreatePost, NewPostBody } from "../api/posts";
-import nav from "../navigation";
-import { ErrorMessage } from "../components/ui";
-import { FormLabel } from "../components/forms";
-import { FormInput } from "../components/forms";
-import { FormTextarea } from "../components/forms";
-import { PageTitle } from "../components/ui";
-import Button from "../components/ui/Button";
-import { useToast } from "../hooks/useToast";
+import { useCreatePost, NewPostBody } from "@/api/posts";
+import nav from "@/navigation";
+import { ErrorMessage } from "@/components/ui";
+import { FormLabel } from "@/components/forms";
+import { FormInput } from "@/components/forms";
+import { FormTextarea } from "@/components/forms";
+import { PageTitle } from "@/components/ui";
+import Button from "@/components/ui/Button";
+import { useToast } from "@/hooks/useToast";
 
 const CreatePostPage: React.FC = () => {
   const navigate = useNavigate();

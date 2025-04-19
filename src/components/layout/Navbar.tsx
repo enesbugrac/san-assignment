@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { useAuth } from "../../hooks/useAuth";
-import nav from "../../navigation";
-import Button from "../ui/Button";
+import { useAuth } from "@/hooks/useAuth";
+import nav from "@/navigation";
+import Button from "@/components/ui/Button";
 
 const Navbar: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);

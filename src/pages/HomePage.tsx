@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useGetPosts, Post } from "../api/posts";
-import { useGetComments, Comment } from "../api/comments";
-import nav from "../navigation";
-import { PageTitle } from "../components/ui";
+import { useGetPosts, Post } from "@/api/posts";
+import { useGetComments, Comment } from "@/api/comments";
+import nav from "@/navigation";
+import { PageTitle } from "@/components/ui";
 
 const HomePage: React.FC = () => {
   const {

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, ReactNode } from "react";
-import { fetchTranslationResource } from "../../i18n/translationLoader";
-import { LoadingSpinner } from "../ui";
+import { fetchTranslationResource } from "@/i18n/translationLoader";
+import { LoadingSpinner } from "@/components/ui";
 
 interface TranslationPrefetcherProps {
   translationKeys: string[];

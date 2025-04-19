@@ -1,8 +1,8 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { useGetCommentsByPost, Comment } from "../api/comments";
-import { LoadingSpinner } from "../components/ui";
-import { ErrorMessage } from "../components/ui";
+import { useGetCommentsByPost, Comment } from "@/api/comments";
+import { LoadingSpinner } from "@/components/ui";
+import { ErrorMessage } from "@/components/ui";
 
 const PostCommentsTab: React.FC = () => {
   const { id } = useParams<{ id: string }>();
