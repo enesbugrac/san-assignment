@@ -1,4 +1,5 @@
-const API_BASE_URL = "https://jsonplaceholder.typicode.com";
+const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL || "https://jsonplaceholder.typicode.com";
 
 export async function apiClient<T>(endpoint: string, options?: RequestInit): Promise<T> {
   const url = `${API_BASE_URL}${endpoint}`;
