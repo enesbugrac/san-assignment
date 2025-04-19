@@ -15,7 +15,7 @@ const FormTextarea: React.FC<FormTextareaProps> = ({
       <textarea
         className={`
           w-full py-2 px-3 
-          bg-white border rounded-lg
+          bg-[#121212] border rounded-lg
           text-gray-700 leading-tight
           ${error ? "border-red-500 bg-red-50" : "border-gray-300"}
           focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500

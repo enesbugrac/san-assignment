@@ -1,5 +1,5 @@
 import React from "react";
-import FormButton from "../forms/FormButton";
+import Button from "./Button";
 
 interface ConfirmationModalProps {
   isOpen: boolean;
@@ -10,7 +10,7 @@ interface ConfirmationModalProps {
   confirmText?: string;
   cancelText?: string;
   isConfirming?: boolean;
-  confirmVariant?: "danger" | "primary" | "warning";
+  confirmVariant?: "danger" | "primary";
   icon?: React.ReactNode;
 }
 
@@ -29,7 +29,7 @@ const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 z-40 flex items-center justify-center p-4 backdrop-blur-sm transition-opacity">
+    <div className="fixed inset-0 bg-black/10 z-40 flex items-center justify-center p-4 backdrop-blur-sm transition-opacity">
       <div className="bg-white rounded-xl shadow-2xl p-6 z-50 max-w-md w-full transform transition-all duration-300 scale-100 opacity-100">
         <div className="flex items-start mb-4">
           {icon && <div className="flex-shrink-0 mr-4">{icon}</div>}
@@ -40,15 +40,10 @@ const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
         </div>
 
         <div className="flex justify-end space-x-3 mt-6">
-          <FormButton
-            variant="outline"
-            onClick={onClose}
-            disabled={isConfirming}
-            size="sm"
-          >
+          <Button variant="outline" onClick={onClose} disabled={isConfirming} size="sm">
             {cancelText}
-          </FormButton>
-          <FormButton
+          </Button>
+          <Button
             variant={confirmVariant}
             onClick={onConfirm}
             isLoading={isConfirming}
@@ -56,7 +51,7 @@ const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
             size="sm"
           >
             {confirmText}
-          </FormButton>
+          </Button>
         </div>
       </div>
     </div>

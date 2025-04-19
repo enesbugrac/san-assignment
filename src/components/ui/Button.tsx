@@ -1,16 +1,10 @@
 import React, { ButtonHTMLAttributes } from "react";
-import LoadingSpinner from "../ui/LoadingSpinner";
+import LoadingSpinner from "./LoadingSpinner";
 
-type ButtonVariant =
-  | "primary"
-  | "secondary"
-  | "danger"
-  | "success"
-  | "warning"
-  | "outline";
+type ButtonVariant = "primary" | "danger" | "success" | "outline";
 type ButtonSize = "xs" | "sm" | "md" | "lg";
 
-interface FormButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
   size?: ButtonSize;
   isLoading?: boolean;
@@ -19,7 +13,7 @@ interface FormButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   fullWidth?: boolean;
 }
 
-const FormButton: React.FC<FormButtonProps> = ({
+const Button: React.FC<ButtonProps> = ({
   children,
   className = "",
   variant = "primary",
@@ -32,21 +26,16 @@ const FormButton: React.FC<FormButtonProps> = ({
   ...rest
 }) => {
   const baseClasses =
-    "font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 inline-flex items-center justify-center transition-all duration-200 ease-in-out shadow-sm";
+    "font-medium rounded-md cursor-pointer inline-flex items-center justify-center transition-all duration-200 ease-in-out shadow-sm";
 
   const variantClasses: Record<ButtonVariant, string> = {
     primary:
-      "bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-700 hover:to-indigo-800 text-white focus:ring-indigo-500",
-    secondary:
-      "bg-gradient-to-r from-gray-600 to-gray-700 hover:from-gray-700 hover:to-gray-800 text-white focus:ring-gray-500",
+      "bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-700 hover:to-indigo-800 text-white",
     danger:
-      "bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white focus:ring-red-500",
+      "bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white",
     success:
-      "bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white focus:ring-green-500",
-    warning:
-      "bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white focus:ring-yellow-500",
-    outline:
-      "bg-transparent border border-gray-300 text-gray-700 hover:bg-gray-50 focus:ring-indigo-500",
+      "bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white",
+    outline: "bg-transparent border border-gray-300 text-gray-700 hover:bg-gray-50",
   };
 
   const sizeClasses: Record<ButtonSize, string> = {
@@ -81,4 +70,4 @@ const FormButton: React.FC<FormButtonProps> = ({
   );
 };
 
-export default FormButton;
+export default Button;

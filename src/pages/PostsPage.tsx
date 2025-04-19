@@ -4,9 +4,9 @@ import { useGetPosts, useDeletePost, Post } from "../api/posts";
 import nav from "../navigation";
 import { LoadingSpinner } from "../components/ui";
 import { ErrorMessage } from "../components/ui";
-import { FormButton } from "../components/forms";
 import { PageTitle } from "../components/ui";
 import { ConfirmationModal } from "../components/ui";
+import Button from "../components/ui/Button";
 
 const PostsPage: React.FC = () => {
   const { data: posts, isLoading, error } = useGetPosts();
@@ -53,9 +53,9 @@ const PostsPage: React.FC = () => {
     <div className="container mx-auto p-4">
       <div className="flex justify-between items-center mb-6">
         <PageTitle className="text-white mb-0">Posts</PageTitle>
-        <FormButton variant="primary" onClick={handleCreateClick}>
+        <Button variant="primary" onClick={handleCreateClick}>
           Create New Post
-        </FormButton>
+        </Button>
       </div>
 
       <div className="bg-gray-800/80 shadow-lg backdrop-blur-sm rounded-xl overflow-hidden border border-gray-700/50">
@@ -79,25 +79,18 @@ const PostsPage: React.FC = () => {
                 </div>
                 <div className="flex space-x-2 flex-shrink-0 self-end md:self-center">
                   <Link to={nav.post.edit.get({ id: post.id })}>
-                    <FormButton
-                      variant="primary"
-                      size="sm"
-                      className="text-xs font-medium px-3 py-1.5 bg-gray-800/80 border border-red-600/30 hover:bg-gray-700/50 hover:border-red-500/50"
-                      onClick={() => openDeleteModal(post.id)}
-                      disabled={isDeleting}
-                    >
+                    <Button variant="primary" size="sm" disabled={isDeleting}>
                       Edit
-                    </FormButton>
+                    </Button>
                   </Link>
-                  <FormButton
+                  <Button
                     variant="danger"
                     size="sm"
-                    className="text-xs font-medium px-3 py-1.5 bg-gray-800/80 border border-red-600/30 !hover:bg-gray-700/50 !hover:border-red-500/50"
                     onClick={() => openDeleteModal(post.id)}
                     disabled={isDeleting}
                   >
                     Delete
-                  </FormButton>
+                  </Button>
                 </div>
               </li>
             ))

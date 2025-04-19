@@ -91,8 +91,9 @@ function buildNavHelper(routes: RouteConfig[]): NavHelper {
         const url = targetNode.get(params);
 
         console.warn(`nav.go() called for "${route.name}". Navigate to: ${url}`);
+        console.log(url);
 
-        alert(`Navigation would go to: ${url}`);
+        window.history.pushState({}, "", url);
       },
     };
     const nodeData: NavNodeData = {

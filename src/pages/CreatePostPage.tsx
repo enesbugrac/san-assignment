@@ -6,8 +6,8 @@ import { ErrorMessage } from "../components/ui";
 import { FormLabel } from "../components/forms";
 import { FormInput } from "../components/forms";
 import { FormTextarea } from "../components/forms";
-import { FormButton } from "../components/forms";
 import { PageTitle } from "../components/ui";
+import Button from "../components/ui/Button";
 
 const CreatePostPage: React.FC = () => {
   const navigate = useNavigate();
@@ -73,14 +73,14 @@ const CreatePostPage: React.FC = () => {
             <ErrorMessage error={createError} context="creating post" className="mb-5" />
           )}
           <div className="mt-8 flex justify-end">
-            <FormButton
+            <Button
               type="submit"
               isLoading={isPending}
               loadingText="Creating..."
               variant="primary"
             >
               Create Post
-            </FormButton>
+            </Button>
           </div>
         </form>
       </div>

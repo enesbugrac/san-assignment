@@ -7,7 +7,7 @@ import { ErrorMessage } from "../components/ui";
 import { FormLabel } from "../components/forms";
 import { FormInput } from "../components/forms";
 import { FormTextarea } from "../components/forms";
-import { FormButton } from "../components/forms";
+import Button from "../components/ui/Button";
 
 const EditPostTab: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -95,7 +95,7 @@ const EditPostTab: React.FC = () => {
         <ErrorMessage error={errorUpdate} context="updating post" className="mb-5" />
       )}
       <div className="mt-8 flex justify-end">
-        <FormButton
+        <Button
           type="submit"
           isLoading={isUpdating}
           loadingText="Saving..."
@@ -103,7 +103,7 @@ const EditPostTab: React.FC = () => {
           className="bg-teal-600 hover:bg-teal-700"
         >
           Save Changes
-        </FormButton>
+        </Button>
       </div>
     </form>
   );
