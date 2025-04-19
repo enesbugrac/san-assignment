@@ -7,10 +7,11 @@ import { ErrorMessage } from "../components/ui";
 import { PageTitle } from "../components/ui";
 import { ConfirmationModal } from "../components/ui";
 import Button from "../components/ui/Button";
-
+import { useToast } from "../hooks/useToast";
 const PostsPage: React.FC = () => {
   const { data: posts, isLoading, error } = useGetPosts();
   const { mutate: deletePostMutate, isPending: isDeleting } = useDeletePost();
+  const { showToast } = useToast();
   const navigate = useNavigate();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -31,10 +32,11 @@ const PostsPage: React.FC = () => {
       deletePostMutate(postIdToDelete, {
         onSuccess: () => {
           closeDeleteModal();
+          showToast("Post deleted successfully", "success");
         },
         onError: (err) => {
           console.error("Deletion failed:", err);
-          alert("Failed to delete post. See console for details.");
+          showToast("Failed to delete post. See console for details.", "error");
           closeDeleteModal();
         },
       });

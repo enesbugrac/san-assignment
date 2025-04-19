@@ -8,9 +8,11 @@ import { FormInput } from "../components/forms";
 import { FormTextarea } from "../components/forms";
 import { PageTitle } from "../components/ui";
 import Button from "../components/ui/Button";
+import { useToast } from "../hooks/useToast";
 
 const CreatePostPage: React.FC = () => {
   const navigate = useNavigate();
+  const { showToast } = useToast();
   const { mutate: createPostMutate, isPending, error: createError } = useCreatePost();
 
   const [title, setTitle] = useState("");
@@ -29,10 +31,12 @@ const CreatePostPage: React.FC = () => {
     createPostMutate(newPost, {
       onSuccess: (createdPost) => {
         console.log("Successfully created post:", createdPost);
+        showToast("Post created successfully", "success");
         navigate(nav.posts.get());
       },
       onError: (err) => {
         console.error("Error on component level:", err);
+        showToast("Failed to create post. See console for details.", "error");
       },
     });
   };

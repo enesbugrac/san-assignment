@@ -8,12 +8,12 @@ import { FormLabel } from "../components/forms";
 import { FormInput } from "../components/forms";
 import { FormTextarea } from "../components/forms";
 import Button from "../components/ui/Button";
-
+import { useToast } from "../hooks/useToast";
 const EditPostTab: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const postId = id ? parseInt(id, 10) : undefined;
   const navigate = useNavigate();
-
+  const { showToast } = useToast();
   const { data: post, isLoading: isLoadingPost, error: errorPost } = useGetPost(postId);
 
   const {
@@ -46,10 +46,12 @@ const EditPostTab: React.FC = () => {
       {
         onSuccess: (updatedPostData) => {
           console.log("Successfully updated post:", updatedPostData);
+          showToast("Post updated successfully", "success");
           navigate(nav.post.view.get({ id: postId }), { replace: true });
         },
         onError: (err) => {
           console.error("Error updating post:", err);
+          showToast("Failed to update post. See console for details.", "error");
         },
       }
     );

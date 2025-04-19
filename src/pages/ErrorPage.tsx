@@ -9,11 +9,8 @@ interface ErrorPageProps {
 
 const ErrorPage: React.FC<ErrorPageProps> = ({ code, title, message }) => {
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-gray-900 to-black p-4">
+    <div className="flex items-center justify-center min-h-screen p-4">
       <div className="w-full max-w-2xl p-8 rounded-xl bg-gray-800/80 backdrop-blur-sm shadow-xl border border-gray-700/50 text-center relative overflow-hidden">
-        <div className="absolute -top-24 -left-24 w-48 h-48 bg-blue-500/20 rounded-full blur-3xl"></div>
-        <div className="absolute -bottom-24 -right-24 w-48 h-48 bg-purple-500/20 rounded-full blur-3xl"></div>
-
         <div className="relative z-10 mb-8">
           <div className="text-9xl font-bold mb-4 opacity-80">{code}</div>
           <h1 className="text-3xl font-bold text-white mb-4">{title}</h1>
@@ -22,7 +19,7 @@ const ErrorPage: React.FC<ErrorPageProps> = ({ code, title, message }) => {
 
         <Link
           to={"/"}
-          className="px-6 py-3 text-white font-medium rounded-lg shadow-lg flex items-center justify-center mx-auto"
+          className="px-6 py-3 text-white font-medium flex items-center justify-center mx-auto"
         >
           Back to Dashboard
         </Link>
