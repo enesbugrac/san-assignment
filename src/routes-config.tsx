@@ -89,7 +89,7 @@ export const routesConfig: RouteConfig[] = [
   },
   {
     name: "forbidden",
-    path: "/403",
+    path: "/forbidden",
     renderer: {
       lazy: () => import("@/pages/ErrorPage"),
       props: {
