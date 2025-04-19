@@ -14,6 +14,16 @@ const DUMMY_USER: User = {
   permissions: [Permission.VIEW_POSTS, Permission.VIEW_COMMENTS],
 };
 
+const DUMMY_ADMIN: User = {
+  name: "Admin User",
+  permissions: [
+    Permission.VIEW_POSTS,
+    Permission.VIEW_COMMENTS,
+    Permission.CREATE_POST,
+    Permission.EDIT_POST,
+  ],
+};
+
 export const useAuth = () => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
@@ -31,6 +41,11 @@ export const useAuth = () => {
 
   const login = () => {
     queryClient.setQueryData<User>(userQueryKey, DUMMY_USER);
+    navigate("/");
+  };
+
+  const adminLogin = () => {
+    queryClient.setQueryData<User>(userQueryKey, DUMMY_ADMIN);
     navigate("/");
   };
 
@@ -53,6 +68,7 @@ export const useAuth = () => {
     isLoggedIn: !!user,
     isLoading,
     login,
+    adminLogin,
     logout,
     hasPermission,
   };

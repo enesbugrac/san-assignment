@@ -8,7 +8,7 @@ interface PermissionProviderProps {
 }
 
 export const PermissionProvider: React.FC<PermissionProviderProps> = ({ children }) => {
-  const { hasPermission } = useAuth();
+  const { hasPermission, user } = useAuth();
 
   useEffect(() => {
     if (!hasPermission) return;
@@ -17,7 +17,7 @@ export const PermissionProvider: React.FC<PermissionProviderProps> = ({ children
       return hasPermission(permissions as Permission[]);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [user]);
 
   return <>{children}</>;
 };
