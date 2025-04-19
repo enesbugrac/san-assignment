@@ -1,33 +1,15 @@
-import React from "react";
-import AppLayout from "./components/AppLayout";
+import { Permission } from "./types/permissions";
+import { RouteConfig } from "./types/routes";
 
-export enum Permission {
-  VIEW_POSTS = "VIEW_POSTS",
-  VIEW_COMMENTS = "VIEW_COMMENTS",
-  EDIT_POST = "EDIT_POST",
-  CREATE_POST = "CREATE_POST",
-}
+import LoginPage from "./pages/LoginPage";
+import ViewPostTab from "./pages/ViewPostTab";
 
-export interface RouteConfig {
-  name: string;
-  path: string;
-  renderer: {
-    element?: React.ReactElement;
-    lazy?: () => Promise<{ default: React.ComponentType<any> }>;
-  };
-  permissions?: Permission[];
-  translations?: string[];
-  children?: RouteConfig[];
-  caseSensitive?: boolean;
-  index?: boolean;
-}
-
-const routes: RouteConfig[] = [
+export const routesConfig: RouteConfig[] = [
   {
     name: "login",
     path: "/login",
     renderer: {
-      lazy: () => import("./pages/LoginPage"),
+      element: <LoginPage />,
     },
     translations: ["login"],
   },
@@ -35,7 +17,7 @@ const routes: RouteConfig[] = [
     name: "app",
     path: "/",
     renderer: {
-      element: <AppLayout />,
+      lazy: () => import("./components/layout/AppLayout"),
     },
     children: [
       {
@@ -80,7 +62,7 @@ const routes: RouteConfig[] = [
             path: "",
             index: true,
             renderer: {
-              lazy: () => import("./pages/ViewPostTab"),
+              element: <ViewPostTab />,
             },
           },
           {
@@ -109,16 +91,14 @@ const routes: RouteConfig[] = [
     name: "forbidden",
     path: "/403",
     renderer: {
-      element: <div>403 - Access Denied</div>,
+      lazy: () => import("./pages/ErrorPage"),
     },
   },
   {
     name: "notFound",
     path: "*",
     renderer: {
-      element: <div>404 - Page Not Found</div>,
+      lazy: () => import("./pages/ErrorPage"),
     },
   },
 ];
-
-export default routes;

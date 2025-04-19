@@ -1,19 +1,49 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
-import routesConfig from "./routes.tsx";
-import type { RouteConfig } from "./routes.tsx";
-import ProtectedRoute from "./components/ProtectedRoute";
+import { routesConfig } from "./routes-config.tsx";
+import type { RouteConfig } from "./types/routes.ts";
+import ProtectedRoute from "./components/utils/ProtectedRoute";
+import TranslationPrefetcher from "./components/utils/TranslationPrefetcher";
+import LoadingSpinner from "./components/ui/LoadingSpinner";
 
 const renderRoutes = (routes: RouteConfig[]) => {
   return routes.map((route) => {
-    const { path, index, caseSensitive, renderer, children, name, permissions } = route;
+    const {
+      path,
+      index,
+      caseSensitive,
+      renderer,
+      children,
+      name,
+      permissions,
+      translations,
+    } = route;
 
     let element: React.ReactNode = null;
     if (renderer.lazy) {
       const LazyComponent = React.lazy(renderer.lazy);
-      element = <LazyComponent />;
+      element = (
+        <Suspense
+          fallback={
+            <LoadingSpinner
+              text="Loading..."
+              className="flex justify-center items-center min-h-screen"
+            />
+          }
+        >
+          <LazyComponent />
+        </Suspense>
+      );
     } else if (renderer.element) {
       element = renderer.element;
+    }
+
+    if (translations && translations.length > 0) {
+      element = (
+        <TranslationPrefetcher translationKeys={translations}>
+          {element}
+        </TranslationPrefetcher>
+      );
     }
 
     if (permissions && permissions.length > 0) {

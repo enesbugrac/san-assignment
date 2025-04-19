@@ -1,6 +1,6 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
-import { Permission } from "../routes.tsx";
+import { Permission } from "../types/permissions";
 
 export interface User {
   name: string;
@@ -42,6 +42,8 @@ export const useAuth = () => {
   const hasPermission = (requiredPermissions?: Permission[]): boolean => {
     if (!user) return false;
     if (!requiredPermissions || requiredPermissions.length === 0) return true;
+    console.log("user", user);
+    console.log("requiredPermissions", requiredPermissions);
 
     return requiredPermissions.every((reqPermission) =>
       user.permissions.includes(reqPermission)

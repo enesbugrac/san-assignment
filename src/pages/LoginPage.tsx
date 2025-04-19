@@ -1,6 +1,9 @@
 import React from "react";
 import { useAuth } from "../hooks/useAuth";
 import { Navigate } from "react-router-dom";
+import { LoadingSpinner } from "../components/ui";
+import { FormButton } from "../components/forms";
+import { PageTitle } from "../components/ui";
 
 const LoginPage: React.FC = () => {
   const { login, isLoggedIn, isLoading } = useAuth();
@@ -10,7 +13,12 @@ const LoginPage: React.FC = () => {
   }
 
   if (isLoading) {
-    return <div>Loading authentication status...</div>;
+    return (
+      <LoadingSpinner
+        text="Checking authentication..."
+        className="flex justify-center items-center min-h-screen"
+      />
+    );
   }
 
   const handleLoginClick = () => {
@@ -18,16 +26,18 @@ const LoginPage: React.FC = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="p-8 bg-white rounded shadow-md w-full max-w-xs text-center">
-        <h1 className="text-2xl font-bold mb-6">Login</h1>
-        <p className="mb-4">Click the button to log in as the dummy user.</p>
-        <button
+    <div className="flex items-center justify-center min-h-screen w-screen bg-gradient-to-br from-gray-900 to-gray-800 p-4">
+      <div className="p-8 md:p-10 bg-gray-800/80 backdrop-blur-sm rounded-xl shadow-2xl border border-gray-700/50 w-full max-w-md text-center mx-auto">
+        <PageTitle className="text-white mb-4">Welcome Back!</PageTitle>
+        <p className="mb-8 text-gray-300">Click the button below to log in.</p>
+        <FormButton
           onClick={handleLoginClick}
-          className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          variant="primary"
+          size="lg"
+          className="w-full shadow-lg bg-blue-600 hover:bg-blue-700 text-white"
         >
-          Log In (John Doe)
-        </button>
+          Log In as Demo User
+        </FormButton>
       </div>
     </div>
   );
