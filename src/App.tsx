@@ -31,7 +31,7 @@ const renderRoutes = (routes: RouteConfig[]) => {
             />
           }
         >
-          <LazyComponent />
+          <LazyComponent {...(renderer.props || {})} />
         </Suspense>
       );
     } else if (renderer.element) {

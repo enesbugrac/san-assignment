@@ -3,7 +3,6 @@ import { RouteConfig } from "@/types/routes";
 
 import LoginPage from "@/pages/LoginPage";
 import ViewPostTab from "@/pages/ViewPostTab";
-import ErrorPage from "@/pages/ErrorPage";
 
 export const routesConfig: RouteConfig[] = [
   {
@@ -92,26 +91,24 @@ export const routesConfig: RouteConfig[] = [
     name: "forbidden",
     path: "/403",
     renderer: {
-      element: (
-        <ErrorPage
-          code="403"
-          title="Forbidden"
-          message="You are not allowed to access this page."
-        />
-      ),
+      lazy: () => import("@/pages/ErrorPage"),
+      props: {
+        code: "403",
+        title: "Forbidden",
+        message: "You are not allowed to access this page.",
+      },
     },
   },
   {
     name: "notFound",
     path: "*",
     renderer: {
-      element: (
-        <ErrorPage
-          code="404"
-          title="Not Found"
-          message="The page you are looking for does not exist."
-        />
-      ),
+      lazy: () => import("@/pages/ErrorPage"),
+      props: {
+        code: "404",
+        title: "Not Found",
+        message: "The page you are looking for does not exist.",
+      },
     },
   },
 ];

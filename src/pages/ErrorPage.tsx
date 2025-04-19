@@ -1,3 +1,4 @@
+import nav from "@/navigation";
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -18,7 +19,7 @@ const ErrorPage: React.FC<ErrorPageProps> = ({ code, title, message }) => {
         </div>
 
         <Link
-          to={"/"}
+          to={nav.home.get()}
           className="px-6 py-3 text-white font-medium flex items-center justify-center mx-auto"
         >
           Back to Dashboard

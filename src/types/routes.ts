@@ -6,7 +6,9 @@ export interface RouteConfig {
   path: string;
   renderer: {
     element?: React.ReactElement;
-    lazy?: () => Promise<{ default: React.ComponentType<JSX.Element> }>;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    lazy?: () => Promise<{ default: React.ComponentType<any> }>;
+    props?: Record<string, unknown>;
   };
   permissions?: Permission[];
   translations?: string[];
