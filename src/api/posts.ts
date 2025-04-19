@@ -78,10 +78,8 @@ export const useCreatePost = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: createPost,
-    onSuccess: (newPost) => {
+    onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: postsQueryKeys.lists() });
-
-      console.log("Post created:", newPost);
     },
     onError: (error) => {
       console.error("Failed to create post:", error);
@@ -93,11 +91,9 @@ export const useUpdatePost = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: updatePost,
-    onSuccess: (updatedPost, variables) => {
+    onSuccess: (_, variables) => {
       queryClient.invalidateQueries({ queryKey: postsQueryKeys.lists() });
       queryClient.invalidateQueries({ queryKey: postsQueryKeys.detail(variables.id) });
-
-      console.log("Post updated:", updatedPost);
     },
     onError: (error) => {
       console.error("Failed to update post:", error);
@@ -111,10 +107,7 @@ export const useDeletePost = () => {
     mutationFn: deletePost,
     onSuccess: (_, variables) => {
       queryClient.invalidateQueries({ queryKey: postsQueryKeys.lists() });
-
       queryClient.removeQueries({ queryKey: postsQueryKeys.detail(variables) });
-
-      console.log("Post deleted with id:", variables);
     },
     onError: (error, variables) => {
       console.error(`Failed to delete post with id ${variables}:`, error);

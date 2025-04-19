@@ -9,20 +9,17 @@ interface ProtectedRouteProps {
 }
 
 const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children, permissions }) => {
-  const { isLoggedIn, isLoading, hasPermission, user } = useAuth();
+  const { isLoggedIn, isLoading, hasPermission } = useAuth();
 
   if (isLoading) {
     return <div>Checking authentication...</div>;
   }
 
   if (!isLoggedIn) {
-    console.log("User not logged in, redirecting to /login");
     return <Navigate to="/login" replace />;
   }
 
   if (!hasPermission(permissions)) {
-    console.log("User does not have required permissions, redirecting to /403");
-    console.log("Required:", permissions, "User has:", user?.permissions);
     return <Navigate to="/403" replace />;
   }
 

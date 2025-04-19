@@ -44,8 +44,7 @@ const EditPostTab: React.FC = () => {
     updatePostMutate(
       { id: postId, postData: updatedData },
       {
-        onSuccess: (updatedPostData) => {
-          console.log("Successfully updated post:", updatedPostData);
+        onSuccess: () => {
           showToast("Post updated successfully", "success");
           navigate(nav.post.view.get({ id: postId }), { replace: true });
         },

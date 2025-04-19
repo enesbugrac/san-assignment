@@ -42,8 +42,6 @@ export const useAuth = () => {
   const hasPermission = (requiredPermissions?: Permission[]): boolean => {
     if (!user) return false;
     if (!requiredPermissions || requiredPermissions.length === 0) return true;
-    console.log("user", user);
-    console.log("requiredPermissions", requiredPermissions);
 
     return requiredPermissions.every((reqPermission) =>
       user.permissions.includes(reqPermission)

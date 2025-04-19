@@ -29,8 +29,7 @@ const CreatePostPage: React.FC = () => {
     };
 
     createPostMutate(newPost, {
-      onSuccess: (createdPost) => {
-        console.log("Successfully created post:", createdPost);
+      onSuccess: () => {
         showToast("Post created successfully", "success");
         navigate(nav.posts.get());
       },
