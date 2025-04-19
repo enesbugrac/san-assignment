@@ -6,7 +6,7 @@ export interface RouteConfig {
   path: string;
   renderer: {
     element?: React.ReactElement;
-    lazy?: () => Promise<{ default: React.ComponentType<any> }>;
+    lazy?: () => Promise<{ default: React.ComponentType<JSX.Element> }>;
   };
   permissions?: Permission[];
   translations?: string[];
