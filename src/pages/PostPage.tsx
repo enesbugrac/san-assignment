@@ -2,10 +2,8 @@ import React from "react";
 import { Outlet, useParams, NavLink } from "react-router-dom";
 import { useGetPost } from "../api/posts";
 import nav from "../navigation";
-import { useAuth } from "../hooks/useAuth";
 import { LoadingSpinner } from "../components/ui";
 import { ErrorMessage } from "../components/ui";
-import { Permission } from "../types/permissions";
 import { PageTitle } from "../components/ui";
 
 const PostPage: React.FC = () => {
@@ -13,10 +11,6 @@ const PostPage: React.FC = () => {
   const postId = id ? parseInt(id, 10) : undefined;
 
   const { data: post, isLoading, error } = useGetPost(postId);
-  const { hasPermission } = useAuth();
-
-  const canEdit = hasPermission([Permission.EDIT_POST]);
-  const canViewComments = hasPermission([Permission.VIEW_COMMENTS]);
 
   if (isLoading)
     return (
@@ -56,26 +50,19 @@ const PostPage: React.FC = () => {
               View Details
             </NavLink>
           </li>
-          {canEdit && (
-            <li className="mr-1">
-              <NavLink
-                to={nav.post.edit.get({ id: post.id })}
-                className={getNavLinkClass}
-              >
-                Edit Post
-              </NavLink>
-            </li>
-          )}
-          {canViewComments && (
-            <li className="mr-1">
-              <NavLink
-                to={nav.post.comments.get({ id: post.id })}
-                className={getNavLinkClass}
-              >
-                Comments
-              </NavLink>
-            </li>
-          )}
+          <li className="mr-1">
+            <NavLink to={nav.post.edit.get({ id: post.id })} className={getNavLinkClass}>
+              Edit Post
+            </NavLink>
+          </li>
+          <li className="mr-1">
+            <NavLink
+              to={nav.post.comments.get({ id: post.id })}
+              className={getNavLinkClass}
+            >
+              Comments
+            </NavLink>
+          </li>
         </ul>
       </div>
 

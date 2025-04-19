@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useGetPosts, useDeletePost, Post } from "../api/posts";
-import { useAuth } from "../hooks/useAuth";
-import { Permission } from "../types/permissions";
 import nav from "../navigation";
 import { LoadingSpinner } from "../components/ui";
 import { ErrorMessage } from "../components/ui";
@@ -13,14 +11,10 @@ import { ConfirmationModal } from "../components/ui";
 const PostsPage: React.FC = () => {
   const { data: posts, isLoading, error } = useGetPosts();
   const { mutate: deletePostMutate, isPending: isDeleting } = useDeletePost();
-  const { hasPermission } = useAuth();
   const navigate = useNavigate();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [postIdToDelete, setPostIdToDelete] = useState<number | null>(null);
-
-  const canCreate = hasPermission([Permission.CREATE_POST]);
-  const canEditDelete = hasPermission([Permission.EDIT_POST]);
 
   const openDeleteModal = (id: number) => {
     setPostIdToDelete(id);
@@ -59,11 +53,9 @@ const PostsPage: React.FC = () => {
     <div className="container mx-auto p-4">
       <div className="flex justify-between items-center mb-6">
         <PageTitle className="text-white mb-0">Posts</PageTitle>
-        {canCreate && (
-          <FormButton variant="primary" onClick={handleCreateClick}>
-            Create New Post
-          </FormButton>
-        )}
+        <FormButton variant="primary" onClick={handleCreateClick}>
+          Create New Post
+        </FormButton>
       </div>
 
       <div className="bg-gray-800/80 shadow-lg backdrop-blur-sm rounded-xl overflow-hidden border border-gray-700/50">
@@ -85,30 +77,28 @@ const PostsPage: React.FC = () => {
                     {post.body}
                   </p>
                 </div>
-                {canEditDelete && (
-                  <div className="flex space-x-2 flex-shrink-0 self-end md:self-center">
-                    <Link to={nav.post.edit.get({ id: post.id })}>
-                      <FormButton
-                        variant="primary"
-                        size="sm"
-                        className="text-xs font-medium px-3 py-1.5 bg-gray-800/80 border border-red-600/30 hover:bg-gray-700/50 hover:border-red-500/50"
-                        onClick={() => openDeleteModal(post.id)}
-                        disabled={isDeleting}
-                      >
-                        Edit
-                      </FormButton>
-                    </Link>
+                <div className="flex space-x-2 flex-shrink-0 self-end md:self-center">
+                  <Link to={nav.post.edit.get({ id: post.id })}>
                     <FormButton
-                      variant="danger"
+                      variant="primary"
                       size="sm"
-                      className="text-xs font-medium px-3 py-1.5 bg-gray-800/80 border border-red-600/30 !hover:bg-gray-700/50 !hover:border-red-500/50"
+                      className="text-xs font-medium px-3 py-1.5 bg-gray-800/80 border border-red-600/30 hover:bg-gray-700/50 hover:border-red-500/50"
                       onClick={() => openDeleteModal(post.id)}
                       disabled={isDeleting}
                     >
-                      Delete
+                      Edit
                     </FormButton>
-                  </div>
-                )}
+                  </Link>
+                  <FormButton
+                    variant="danger"
+                    size="sm"
+                    className="text-xs font-medium px-3 py-1.5 bg-gray-800/80 border border-red-600/30 !hover:bg-gray-700/50 !hover:border-red-500/50"
+                    onClick={() => openDeleteModal(post.id)}
+                    disabled={isDeleting}
+                  >
+                    Delete
+                  </FormButton>
+                </div>
               </li>
             ))
           ) : (

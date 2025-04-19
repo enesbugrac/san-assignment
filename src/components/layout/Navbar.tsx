@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
-import { Permission } from "../../types/permissions";
 import nav from "../../navigation";
 import FormButton from "../forms/FormButton";
 
@@ -9,13 +8,10 @@ const Navbar: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
   const { logout, user } = useAuth();
-  const { hasPermission } = useAuth();
 
   const handleLogoutClick = () => {
     logout();
   };
-
-  const canCreatePost = hasPermission([Permission.CREATE_POST]);
 
   const isActivePath = (path: string) => {
     return location.pathname === path;
@@ -74,18 +70,17 @@ const Navbar: React.FC = () => {
             >
               Posts
             </Link>
-            {true && (
-              <Link
-                to={nav.createPost.get()}
-                className={`px-3 py-2 rounded-md text-sm font-medium transition duration-150 ease-in-out ${
-                  isActivePath(nav.createPost.get())
-                    ? "bg-gray-700 text-white"
-                    : "text-gray-300 hover:bg-gray-700 hover:text-white"
-                }`}
-              >
-                Create Post
-              </Link>
-            )}
+
+            <Link
+              to={nav.createPost.get()}
+              className={`px-3 py-2 rounded-md text-sm font-medium transition duration-150 ease-in-out ${
+                isActivePath(nav.createPost.get())
+                  ? "bg-gray-700 text-white"
+                  : "text-gray-300 hover:bg-gray-700 hover:text-white"
+              }`}
+            >
+              Create Post
+            </Link>
           </nav>
           <div className="flex items-center space-x-3 border-l pl-4 border-gray-700">
             {user && (
@@ -130,19 +125,17 @@ const Navbar: React.FC = () => {
             >
               Posts
             </Link>
-            {true && (
-              <Link
-                to={nav.createPost.get()}
-                className={`block px-3 py-2 rounded-md text-base font-medium ${
-                  isActivePath(nav.createPost.get())
-                    ? "bg-gray-700 text-white"
-                    : "text-gray-300 hover:bg-gray-700 hover:text-white"
-                }`}
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Create Post
-              </Link>
-            )}
+            <Link
+              to={nav.createPost.get()}
+              className={`block px-3 py-2 rounded-md text-base font-medium ${
+                isActivePath(nav.createPost.get())
+                  ? "bg-gray-700 text-white"
+                  : "text-gray-300 hover:bg-gray-700 hover:text-white"
+              }`}
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Create Post
+            </Link>
             {user && (
               <div className="px-3 py-2 text-sm text-gray-300 flex items-center">
                 {user.name}
