@@ -1,4 +1,19 @@
-export const fetchTranslationResource = async (key: string): Promise<void> => {
+export interface TranslationResource {
+  key: string;
+  loaded: boolean;
+}
+
+export const fetchTranslationResource = async (
+  key: string
+): Promise<TranslationResource> => {
   console.log(`[i18n] Simulating fetch for resource: ${key}`);
-  return Promise.resolve();
+
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve({
+        key,
+        loaded: true,
+      });
+    }, 100);
+  });
 };

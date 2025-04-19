@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useGetPosts, useDeletePost, Post } from "@/api/posts";
 import nav from "@/navigation";
 import { LoadingSpinner } from "@/components/ui";
@@ -12,7 +12,6 @@ const PostsPage: React.FC = () => {
   const { data: posts, isLoading, error } = useGetPosts();
   const { mutate: deletePostMutate, isPending: isDeleting } = useDeletePost();
   const { showToast } = useToast();
-  const navigate = useNavigate();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [postIdToDelete, setPostIdToDelete] = useState<number | null>(null);
@@ -43,10 +42,6 @@ const PostsPage: React.FC = () => {
     }
   };
 
-  const handleCreateClick = () => {
-    navigate(nav.createPost.get());
-  };
-
   if (isLoading) return <LoadingSpinner text="Loading posts..." className="mt-10" />;
   if (error)
     return <ErrorMessage error={error} context="loading posts" className="m-4" />;
@@ -55,7 +50,7 @@ const PostsPage: React.FC = () => {
     <div className="container mx-auto p-4">
       <div className="flex justify-between items-center mb-6">
         <PageTitle className="text-white mb-0">Posts</PageTitle>
-        <Button variant="primary" onClick={handleCreateClick}>
+        <Button variant="primary" onClick={() => nav.createPost.go()}>
           Create New Post
         </Button>
       </div>
@@ -80,11 +75,14 @@ const PostsPage: React.FC = () => {
                   </p>
                 </div>
                 <div className="flex space-x-2 flex-shrink-0 self-end md:self-center">
-                  <Link to={nav.post.edit.get({ id: post.id })}>
-                    <Button variant="primary" size="sm" disabled={isDeleting}>
-                      Edit
-                    </Button>
-                  </Link>
+                  <Button
+                    variant="primary"
+                    size="sm"
+                    onClick={() => nav.post.edit.go({ id: post.id })}
+                    disabled={isDeleting}
+                  >
+                    Edit
+                  </Button>
                   <Button
                     variant="danger"
                     size="sm"

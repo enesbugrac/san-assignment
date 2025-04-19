@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import "@/index.css";
 import App from "@/App";
 import { ToastProvider } from "@/contexts/ToastContext";
+import PermissionProvider from "@/components/utils/PermissionProvider";
 
 const queryClient = new QueryClient();
 
@@ -13,7 +14,9 @@ createRoot(document.getElementById("root")!).render(
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <ToastProvider>
-          <App />
+          <PermissionProvider>
+            <App />
+          </PermissionProvider>
         </ToastProvider>
       </BrowserRouter>
     </QueryClientProvider>

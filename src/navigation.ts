@@ -49,11 +49,6 @@ export const setPermissionChecker = (
   checkPermissions = permissionFn;
 };
 
-/**
- * Recursively builds the navigation helper object from the route configuration.
- * @param routes - The array of route configurations.
- * @returns The nested navigation helper object.
- */
 function buildNavHelper(routes: RouteConfig[]): NavHelper {
   const nav: Record<string, unknown> = {};
   const routeMap: Map<string, { route: RouteConfig; fullPath: string }> = new Map();
@@ -83,16 +78,15 @@ function buildNavHelper(routes: RouteConfig[]): NavHelper {
         if (route.permissions && route.permissions.length > 0) {
           const hasPermission = checkPermissions(route.permissions);
           if (!hasPermission) {
-            alert(`You don't have permission to access ${route.name}.`);
+            alert("You don't have permission to access this page.");
             return;
           }
         }
 
         const url = targetNode.get(params);
-
-        console.warn(`nav.go() called for "${route.name}". Navigate to: ${url}`);
-
         window.history.pushState({}, "", url);
+
+        window.dispatchEvent(new Event("popstate"));
       },
     };
     const nodeData: NavNodeData = {
